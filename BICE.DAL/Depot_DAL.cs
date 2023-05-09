@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Geometrie.DAL
+namespace BICE.DAL
 {
     public abstract class Depot_DAL<Type_DAL> : IDepot_DAL<Type_DAL>
     {
