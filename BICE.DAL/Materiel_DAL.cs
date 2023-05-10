@@ -13,20 +13,18 @@ namespace BICE.DAL
         public string Categorie { get; set; }
         public string Numero { get; set; }
         public bool EstStocke { get; set; }
-        public int? VehiculeId { get; set; }
         public int? NbUtilisation { get; set; }
         public int? NbMaxUtilisation { get; set; }
         public DateTime? DateExpiration { get; set; }
         public DateTime? DateControle { get; set; }
 
-        public Materiel_DAL(int id, string denomination, string categorie, string numero, bool estStocke, int? vehiculeId, int? nbUtilisation, int? nbMaxUtilisation, DateTime? dateExpiration, DateTime? dateControle)
+        public Materiel_DAL(int id, string denomination, string categorie, string numero, bool estStocke, int? nbUtilisation, int? nbMaxUtilisation, DateTime? dateExpiration, DateTime? dateControle)
         {
             Id = id;
             Denomination = denomination;
             Categorie = categorie;
             Numero = numero;
             EstStocke = estStocke;
-            VehiculeId = vehiculeId;
             NbUtilisation = nbUtilisation;
             NbMaxUtilisation = nbMaxUtilisation;
             DateExpiration = dateExpiration;
