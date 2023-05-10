@@ -7,8 +7,34 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="BICE.BLL\**" />
+    <Compile Remove="BICE.DAL\**" />
+    <Compile Remove="BICE.DTO\**" />
+    <Compile Remove="BICE.SRV\**" />
+    <Content Remove="BICE.BLL\**" />
+    <Content Remove="BICE.DAL\**" />
+    <Content Remove="BICE.DTO\**" />
+    <Content Remove="BICE.SRV\**" />
+    <EmbeddedResource Remove="BICE.BLL\**" />
+    <EmbeddedResource Remove="BICE.DAL\**" />
+    <EmbeddedResource Remove="BICE.DTO\**" />
+    <EmbeddedResource Remove="BICE.SRV\**" />
+    <None Remove="BICE.BLL\**" />
+    <None Remove="BICE.DAL\**" />
+    <None Remove="BICE.DTO\**" />
+    <None Remove="BICE.SRV\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="BICE.BLL\BICE.BLL.csproj" />
+    <ProjectReference Include="BICE.DAL\BICE.DAL.csproj" />
+    <ProjectReference Include="BICE.DTO\BICE.DTO.csproj" />
+    <ProjectReference Include="BICE.SRV\BICE.SRV.csproj" />
   </ItemGroup>
 
 </Project>
