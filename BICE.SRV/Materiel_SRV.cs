@@ -64,21 +64,49 @@ namespace BICE.SRV
         public Materiel_DTO? GetById(int id)
         {
             var Materiel_DAL = depot_materiel.GetById(id);
-            if (depot_materiel.GetById(id) == null) { return null; }
-
-            return new Materiel_DTO()
+            if (depot_materiel.GetById(id) == null) 
+            { 
+                return null; 
+            }else
             {
-                Id = Materiel_DAL.Id,
-                Denomination = Materiel_DAL.Denomination,
-                Categorie = Materiel_DAL.Categorie,
-                Numero = Materiel_DAL.Numero,
-                EstStocke = Materiel_DAL.EstStocke,
-                NbUtilisation = Materiel_DAL.NbUtilisation,
-                NbMaxUtilisation = Materiel_DAL.NbMaxUtilisation,
-                DateExpiration = Materiel_DAL.DateExpiration,
-                DateControle = Materiel_DAL.DateControle
-            };
+                return new Materiel_DTO()
+                {
+                    Id = Materiel_DAL.Id,
+                    Denomination = Materiel_DAL.Denomination,
+                    Categorie = Materiel_DAL.Categorie,
+                    Numero = Materiel_DAL.Numero,
+                    EstStocke = Materiel_DAL.EstStocke,
+                    NbUtilisation = Materiel_DAL.NbUtilisation,
+                    NbMaxUtilisation = Materiel_DAL.NbMaxUtilisation,
+                    DateExpiration = Materiel_DAL.DateExpiration,
+                    DateControle = Materiel_DAL.DateControle
+                };
+            }
         }
+
+        public Materiel_DTO? GetByNumero(string numero)
+        {
+            var Materiel_DAL = depot_materiel.GetByNumero(numero);
+            if (depot_materiel.GetByNumero(numero) == null) 
+            { 
+                return null; 
+            }else
+            {
+                return new Materiel_DTO()
+                {
+                    Id = Materiel_DAL.Id,
+                    Denomination = Materiel_DAL.Denomination,
+                    Categorie = Materiel_DAL.Categorie,
+                    Numero = Materiel_DAL.Numero,
+                    EstStocke = Materiel_DAL.EstStocke,
+                    NbUtilisation = Materiel_DAL.NbUtilisation,
+                    NbMaxUtilisation = Materiel_DAL.NbMaxUtilisation,
+                    DateExpiration = Materiel_DAL.DateExpiration,
+                    DateControle = Materiel_DAL.DateControle
+                };
+            }
+        }
+
         public Materiel_DTO Modifier(Materiel_DTO materiel)
         {
             var materiel_DAL = new Materiel_DAL(
@@ -95,6 +123,21 @@ namespace BICE.SRV
             depot_materiel.Update(materiel_DAL);
 
             return materiel;
+        }
+        public void Delete(Materiel_DTO materiel)
+        {
+            var materiel_DAL = new Materiel_DAL(
+                materiel.Id,
+                materiel.Denomination,
+                materiel.Categorie,
+                materiel.Numero,
+                materiel.EstStocke,
+                materiel.NbUtilisation,
+                materiel.NbMaxUtilisation,
+                materiel.DateExpiration,
+                materiel.DateControle
+                );
+            depot_materiel.Delete(materiel_DAL);
         }
 
     }

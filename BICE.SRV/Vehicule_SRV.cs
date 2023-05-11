@@ -54,16 +54,39 @@ namespace BICE.SRV
         public Vehicule_DTO? GetById(int id)
         {
             var Vehicule_DAL = depot_vehicule.GetById(id);
-            if (depot_vehicule.GetById(id) == null) { return null; }
-
-            return new Vehicule_DTO()
+            if (depot_vehicule.GetById(id) == null) 
+            { 
+                return null; 
+            }else
             {
-                Id = Vehicule_DAL.Id,
-                Denomination = Vehicule_DAL.Denomination,
-                Immatriculation = Vehicule_DAL.Immatriculation,
-                Numero = Vehicule_DAL.Numero
-            };
+                return new Vehicule_DTO()
+                {
+                    Id = Vehicule_DAL.Id,
+                    Denomination = Vehicule_DAL.Denomination,
+                    Immatriculation = Vehicule_DAL.Immatriculation,
+                    Numero = Vehicule_DAL.Numero
+                };
+            }
         }
+        public Vehicule_DTO? GetByNumero(string numero)
+        {
+            var Vehicule_DAL = depot_vehicule.GetByNumero(numero);
+            if (depot_vehicule.GetByNumero(numero) == null)
+            {
+                return null;
+            }
+            else
+            {
+                return new Vehicule_DTO()
+                {
+                    Id = Vehicule_DAL.Id,
+                    Denomination = Vehicule_DAL.Denomination,
+                    Immatriculation = Vehicule_DAL.Immatriculation,
+                    Numero = Vehicule_DAL.Numero
+                };
+            }
+        }
+
         public Vehicule_DTO Modifier(Vehicule_DTO vehicule)
         {
             var vehicule_DAL = new Vehicule_DAL(
@@ -75,6 +98,17 @@ namespace BICE.SRV
             depot_vehicule.Update(vehicule_DAL);
 
             return vehicule;
+        }
+
+        public void Delete(Vehicule_DTO vehicule)
+        {
+            var vehicule_DAL = new Vehicule_DAL(
+                vehicule.Id,
+                vehicule.Denomination,
+                vehicule.Immatriculation,
+                vehicule.Numero
+                );
+            depot_vehicule.Delete(vehicule_DAL);
         }
 
     }

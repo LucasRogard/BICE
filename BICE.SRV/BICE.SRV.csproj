@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Moq" Version="4.18.4" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\BICE.BLL\BICE.BLL.csproj" />
     <ProjectReference Include="..\BICE.DAL\BICE.DAL.csproj" />
     <ProjectReference Include="..\BICE.DTO\BICE.DTO.csproj" />
