@@ -74,6 +74,33 @@ namespace BICE.DAL
             return v;
         }
 
+        public override Vehicule_DAL GetByNumero(string numero)
+        {
+            InitialiserLaConnexionEtLaCommande();
+
+            Commande.CommandText = @"SELECT id,denomination,immatriculation,numero
+                                    FROM [dbo].[vehicules]
+                                     WHERE numero=@numero";
+
+            Commande.Parameters.Add(new SqlParameter("@numero", numero));
+
+            var reader = Commande.ExecuteReader();
+
+            Vehicule_DAL v = null;
+
+            if (reader.Read()) //j'ai trouvé une ligne
+            {
+                v = new Vehicule_DAL(reader.GetInt32(0),
+                                    reader.GetString(1),
+                                    reader.GetSqlString(2).IsNull ? null : reader.GetString(2),
+                                    reader.GetString(3));
+            }
+
+            FermerEtDisposerLaConnexionEtLaCommande();
+
+            return v;
+        }
+
         public override Vehicule_DAL Insert(Vehicule_DAL v)
         {
             InitialiserLaConnexionEtLaCommande();
@@ -101,11 +128,11 @@ namespace BICE.DAL
         public override Vehicule_DAL Update(Vehicule_DAL v)
         {
             InitialiserLaConnexionEtLaCommande();
-            Commande.CommandText = @"UPDATE [dbo].[Points]
-                                           set [denomination] = @denomination
-                                           ,[immatriculation] = @immatriculation
-                                           ,[numero] = @numero
-                                     WHERE id=@id";
+            Commande.CommandText = @"UPDATE [dbo].[vehicules] set [denomination] = @denomination
+                                        ,[immatriculation] = @immatriculation
+                                        ,[numero] = @numero
+                                    WHERE
+                                        (id = @id)";
 
             Commande.Parameters.Add(new SqlParameter("@id", v.Id));
             Commande.Parameters.Add(new SqlParameter("@denomination", v.Denomination));

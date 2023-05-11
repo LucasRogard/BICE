@@ -75,6 +75,11 @@ namespace BICE.DAL
             return i;
         }
 
+        public override Intervention_DAL GetByNumero(string numero)
+        {
+            return null;
+        }
+
         public override Intervention_DAL Insert(Intervention_DAL i)
         {
             InitialiserLaConnexionEtLaCommande();
