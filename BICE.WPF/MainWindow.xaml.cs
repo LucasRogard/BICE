@@ -57,37 +57,7 @@ namespace BICE.WPF
                         }
                     }
                 }
-
             }
-
-        }
-
-        private void DeleteMateriel(object sender, RoutedEventArgs e)
-        {
-            Microsoft.Win32.OpenFileDialog openFileDialog = new Microsoft.Win32.OpenFileDialog();
-            bool? result = openFileDialog.ShowDialog();
-            if (result == true)
-            {
-                using (StreamReader reader = new StreamReader(openFileDialog.FileName))
-                {
-                    while (!reader.EndOfStream)
-                    {
-                        var line = reader.ReadLine();
-                        var client = new Client("https://localhost:7238/", new System.Net.Http.HttpClient());
-                        var data = line.Split(';');
-                        var dto = client.MaterielGetById(Int32.Parse(data[0]));
-                        if (client.MaterielGetById(dto.Id) == null)
-                        {
-                            throw new Exception("Vous avez essayé de supprimer un matériel inexistant");
-                        }else
-                        {
-                            client.MaterielDelete(dto);
-                        }
-                    }
-                }
-
-            }
-
         }
 
         private void AjouterVehicule(object sender, RoutedEventArgs e)
@@ -157,6 +127,71 @@ namespace BICE.WPF
 
             }
 
+        }
+        private void RetourIntervention(object sender, RoutedEventArgs e)
+        {
+            TextBox VehiculeId = FindName("VehiculeId2") as TextBox;
+            var id = int.Parse(VehiculeId.Text);
+            var vehicule_dto = client.VehiculeGetById(id);
+            if (vehicule_dto == null)
+            {
+                throw new Exception("Aucun véhicule ne porte cet id");
+            }
+            Microsoft.Win32.OpenFileDialog MaterielUtilise = new Microsoft.Win32.OpenFileDialog();
+            Microsoft.Win32.OpenFileDialog MaterielNonUtilise = new Microsoft.Win32.OpenFileDialog();
+            bool? result = MaterielUtilise.ShowDialog();
+            if (result == true)
+            {
+                using (StreamReader reader = new StreamReader(MaterielUtilise.FileName))
+                {
+                    while (!reader.EndOfStream)
+                    {
+                        var ligne = reader.ReadLine();
+                        var colonne = ligne.Split(';');
+                        var materiel_dto = client.MaterielGetByNumero(colonne[0]);
+
+                        if (materiel_dto != null)
+                        {
+                            materiel_dto.NbUtilisation += 1;
+                            if (materiel_dto.NbUtilisation >= materiel_dto.NbMaxUtilisation)
+                            {
+                                materiel_dto.EstStocke= false;
+                            }
+                            client.MaterielModifier(materiel_dto);
+                        }
+                    }
+                }
+
+            }
+            result = MaterielNonUtilise.ShowDialog();
+            if (result == true)
+            {
+                using (StreamReader reader = new StreamReader(MaterielUtilise.FileName))
+                {
+                    while (!reader.EndOfStream)
+                    {
+                        var ligne = reader.ReadLine();
+                        var colonne = ligne.Split(';');
+                        var materiel_dto = client.MaterielGetByNumero(colonne[0]);
+                        if (materiel_dto != null)
+                        {
+                            materiel_dto.VehiculeId = id;
+                            client.MaterielModifier(materiel_dto);
+                        }
+                    }
+                }
+
+            }
+            TextBox Denomination = FindName("Denomination") as TextBox;
+            TextBox Description = FindName("Description") as TextBox;
+            var intervention_dto = new BICE.CLIENT.Intervention_DTO()
+            {
+                Date= DateTime.Now,
+                Denomination = Denomination.Text,
+                Description = Description.Text
+                
+            };
+            client.InterventionAjouter(intervention_dto);
         }
     }
 }

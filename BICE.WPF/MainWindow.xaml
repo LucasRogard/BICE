@@ -15,16 +15,25 @@
         <TextBlock Text="Ajouter/Modifier " VerticalAlignment="Top" Margin="359,107,326,0" />
         <TextBox x:Name="Denomination" VerticalAlignment="Top" Margin="355,132,345,0" Height="18" />
         <TextBox x:Name="Immatriculation" VerticalAlignment="Top" Margin="355,157,345,0" Height="18" />
-        <TextBox x:Name="Numero" VerticalAlignment="Top" Margin="355,180,345,0" Height="18" />
-        <TextBlock Text="Supprimer " VerticalAlignment="Center" Margin="376,0,325,0" />
+        <TextBox x:Name="Numero" VerticalAlignment="Top" Margin="355,181,345,0" Height="18" />
+        <TextBlock Text="Supprimer " Margin="375,215,326,203" />
         <TextBox x:Name="IdDelete" VerticalAlignment="Top" Margin="355,239,345,0" Height="18" />
-        <TextBlock Text="Numéro " VerticalAlignment="Top" Margin="303,180,417,0" />
+        <TextBlock Text="Numéro " VerticalAlignment="Top" Margin="303,181,417,0" />
         <TextBlock Text="Dénomination " VerticalAlignment="Top" Margin="269,132,417,0" />
         <Button x:Name ="OkAjouterVehicule" Content="Ok" HorizontalAlignment="Left" Margin="464,178,0,0" VerticalAlignment="Top" Click="AjouterVehicule"/>
         <Button x:Name ="OkSupprimerVehicule" Content="Ok" HorizontalAlignment="Left" Margin="464,238,0,0" VerticalAlignment="Top" Click="DeleteVehicule"/>
         <!--<TextBlock Text="Retour d'intervention" FontSize ="15" VerticalAlignment="Top" Margin="623,355,38,0" />-->
         <TextBlock Text="Immatriculation " VerticalAlignment="Top" Margin="262,157,418,0" />
+        <!--Test-->
 
+        <TextBlock Text="Id du véhicule " VerticalAlignment="Top" Margin="532,134,136,0" />
+        <TextBlock Text="Dénomination " VerticalAlignment="Top" Margin="530,159,143,0" />
+        <TextBlock Text="Description" VerticalAlignment="Top" Margin="545,180,136,0" />
+        <TextBox x:Name="VehiculeId2" VerticalAlignment="Top" Margin="614,132,86,0" Height="18" RenderTransformOrigin="0.963,0.478" />
+        <Button x:Name ="CSV" Content="CSV" HorizontalAlignment="Left" Margin="627,217,0,0" VerticalAlignment="Top" Click="RetourIntervention"/>
+        <TextBox x:Name="Description" VerticalAlignment="Top" Margin="614,182,86,0" Height="18" />
+        <TextBox x:Name="Denomination2" VerticalAlignment="Top" Margin="614,159,86,0" Height="18" />
+        <TextBlock Text="Ajouter/Modifier " VerticalAlignment="Top" Margin="619,107,66,0" />
         <!--<Button x:Name ="UploadButtonStock" Content="Upload" HorizontalAlignment="Left" Margin="221,297,0,0" VerticalAlignment="Top" Click="UploadButton_Add_Click"/>-->
         <!--<TextBlock Text="Id " VerticalAlignment="Top" Margin="645,380,139,0" />-->
         <!--<TextBox x:Name="retourImmatriculation" VerticalAlignment="Top" Margin="666,390,34,0" Height="18" />-->
