@@ -13,6 +13,7 @@ namespace BICE.DTO
         public string Categorie { get; set; }
         public string Numero { get; set; }
         public bool EstStocke { get; set; }
+        public int? VehiculeId { get; set; }
         public int? NbUtilisation { get; set; }
         public int? NbMaxUtilisation { get; set; }
         public DateTime? DateExpiration { get; set; }

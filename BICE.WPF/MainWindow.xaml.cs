@@ -34,18 +34,18 @@ namespace BICE.WPF
                 {
                     while (!reader.EndOfStream)
                     {
-                        var line = reader.ReadLine();
-                        var data = line.Split(';');
+                        var ligne = reader.ReadLine();
+                        var colonne = ligne.Split(';');
                         var dto = new BICE.CLIENT.Materiel_DTO()
                         {
-                            Numero = data[0],
-                            Denomination = data[1],
-                            Categorie = data[2],
+                            Numero = colonne[0],
+                            Denomination = colonne[1],
+                            Categorie = colonne[2],
                             EstStocke = true,
-                            NbUtilisation = int.Parse(data[3]),
-                            NbMaxUtilisation = String.IsNullOrEmpty(data[4]) ? null : int.Parse(data[4]),
-                            DateControle = data[5] == "" ? null : DateTime.Parse(data[5]),
-                            DateExpiration = data[6] == "" ? null : DateTime.Parse(data[6])
+                            NbUtilisation = String.IsNullOrEmpty(colonne[3]) ? null : int.Parse(colonne[3]),
+                            NbMaxUtilisation = String.IsNullOrEmpty(colonne[4]) ? null : int.Parse(colonne[4]),
+                            DateControle = colonne[5] == "" ? null : DateTime.Parse(colonne[5]),
+                            DateExpiration = colonne[6] == "" ? null : DateTime.Parse(colonne[6])
                         };
 
                         if (client.MaterielGetByNumero(dto.Numero) == null)
@@ -114,8 +114,8 @@ namespace BICE.WPF
 
         private void DeleteVehicule(Object sender, RoutedEventArgs e)
         {
-            TextBox TextBoxId = FindName("IdDelete") as TextBox;
-            var id = TextBoxId.Text;
+            TextBox VehiculeId = FindName("IdDelete") as TextBox;
+            var id = VehiculeId.Text;
             var dto = client.VehiculeGetById(int.Parse(id));
             dto.Actif = false;
             if (dto == null)
@@ -125,6 +125,38 @@ namespace BICE.WPF
             {
                 client.VehiculeModifier(dto);
             }
+        }
+
+        private void ModifierVehiculeIdMateriel(object sender, RoutedEventArgs e)
+        {
+            TextBox VehiculeId = FindName("VehiculeId") as TextBox;
+            var id = int.Parse(VehiculeId.Text);
+            var vehicule_dto = client.VehiculeGetById(id);
+            if (vehicule_dto == null) { 
+                throw new Exception("Aucun véhicule ne porte cet id"); 
+            }
+            Microsoft.Win32.OpenFileDialog openFileDialog = new Microsoft.Win32.OpenFileDialog();
+            bool? result = openFileDialog.ShowDialog();
+            if (result == true)
+            {
+                using (StreamReader reader = new StreamReader(openFileDialog.FileName))
+                {
+                    while (!reader.EndOfStream)
+                    {
+                        var ligne = reader.ReadLine();
+                        var colonne = ligne.Split(';');
+                        var materiel_dto = client.MaterielGetByNumero(colonne[0]);
+
+                        if (materiel_dto != null)
+                        {
+                            materiel_dto.VehiculeId = id;
+                            client.MaterielModifier(materiel_dto);
+                        }
+                    }
+                }
+
+            }
+
         }
     }
 }

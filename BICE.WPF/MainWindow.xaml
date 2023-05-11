@@ -7,25 +7,24 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <TextBlock Grid.Row="0" FontSize="24" FontWeight="Bold" Text="BICE" Margin="373,10,367,398" FontFamily="Arial Black" />
-        <TextBlock FontSize ="15" VerticalAlignment="Top" Margin="145,69,0,0" FontFamily="Arial Black" Height="24" HorizontalAlignment="Left" ><Run Text="Mat"/><Run Language="fr-fr" Text="e"/><Run Text="riel "/></TextBlock>
-        <Button x:Name ="UploadButton" Content="Actualiser" HorizontalAlignment="Left" Margin="151,103,0,0" VerticalAlignment="Top" Click="AjouterMateriel"/>
-        <Button x:Name ="UploadButtonDel" Content="Supprimer" HorizontalAlignment="Left" Margin="149,137,0,0" VerticalAlignment="Top" Click="DeleteMateriel"/>
-        <TextBlock Text="Vehicule " FontSize ="15" VerticalAlignment="Top" Margin="367,71,0,0" Height="20" FontFamily="Arial Black" HorizontalAlignment="Left" />
-        <TextBlock Text="Ajouter/Modifier " VerticalAlignment="Top" Margin="359,97,342,0" />
-        <TextBox x:Name="Denomination" VerticalAlignment="Top" Margin="355,122,345,0" Height="18" />
-        <TextBox x:Name="Immatriculation" VerticalAlignment="Top" Margin="355,147,345,0" Height="18" />
-        <TextBox x:Name="Numero" VerticalAlignment="Top" Margin="355,170,345,0" Height="18" />
-        <TextBlock Text="Supprimer " VerticalAlignment="Top" Margin="375,194,351,0" />
-        <TextBox x:Name="IdDelete" VerticalAlignment="Top" Margin="355,217,345,0" Height="18" />
-        <TextBlock Text="Numéro " VerticalAlignment="Top" Margin="303,170,453,0" />
-        <TextBlock Text="Dénomination " VerticalAlignment="Top" Margin="269,122,443,0" />
-        <Button x:Name ="UploadButtonVehicule" Content="OK" HorizontalAlignment="Left" Margin="464,168,0,0" VerticalAlignment="Top" Click="AjouterVehicule"/>
-        <Button x:Name ="UploadButtonVehiculeDel" Content="OK" HorizontalAlignment="Left" Margin="464,216,0,0" VerticalAlignment="Top" Click="DeleteVehicule"/>
-        <TextBlock Text="Stock Véhicule " VerticalAlignment="Top" Margin="359,267,326,0" />
+        <TextBlock FontSize ="15" VerticalAlignment="Top" Margin="100,71,0,0" FontFamily="Arial Black" Height="24" HorizontalAlignment="Left" ><Run Text="Mat"/><Run Language="fr-fr" Text="e"/><Run Text="riel "/></TextBlock>
+        <Button x:Name ="UploadMateriel" Content="Actualiser" HorizontalAlignment="Left" Margin="105,121,0,0" VerticalAlignment="Top" Click="AjouterMateriel"/>
+        <TextBox x:Name="VehiculeId" VerticalAlignment="Top" Margin="40,173,660,0" Height="18" />
+        <Button x:Name ="UploadNumeroMateriel" Content="Stock Véhicule" HorizontalAlignment="Left" Margin="154,173,0,0" VerticalAlignment="Top" Click="ModifierVehiculeIdMateriel"/>
+        <TextBlock Text="Vehicule " FontSize ="15" VerticalAlignment="Top" Margin="367,71,0,0" Height="20" FontFamily="Arial Black" HorizontalAlignment="Left" Width="88" />
+        <TextBlock Text="Ajouter/Modifier " VerticalAlignment="Top" Margin="359,107,326,0" />
+        <TextBox x:Name="Denomination" VerticalAlignment="Top" Margin="355,132,345,0" Height="18" />
+        <TextBox x:Name="Immatriculation" VerticalAlignment="Top" Margin="355,157,345,0" Height="18" />
+        <TextBox x:Name="Numero" VerticalAlignment="Top" Margin="355,180,345,0" Height="18" />
+        <TextBlock Text="Supprimer " VerticalAlignment="Center" Margin="376,0,325,0" />
+        <TextBox x:Name="IdDelete" VerticalAlignment="Top" Margin="355,239,345,0" Height="18" />
+        <TextBlock Text="Numéro " VerticalAlignment="Top" Margin="303,180,417,0" />
+        <TextBlock Text="Dénomination " VerticalAlignment="Top" Margin="269,132,417,0" />
+        <Button x:Name ="OkAjouterVehicule" Content="Ok" HorizontalAlignment="Left" Margin="464,178,0,0" VerticalAlignment="Top" Click="AjouterVehicule"/>
+        <Button x:Name ="OkSupprimerVehicule" Content="Ok" HorizontalAlignment="Left" Margin="464,238,0,0" VerticalAlignment="Top" Click="DeleteVehicule"/>
         <!--<TextBlock Text="Retour d'intervention" FontSize ="15" VerticalAlignment="Top" Margin="623,355,38,0" />-->
-        <TextBlock Text="Immatriculation " VerticalAlignment="Top" Margin="262,147,452,0" />
-        <TextBox x:Name="stockImmatriculation" VerticalAlignment="Top" Margin="359,305,341,0" Height="18" />
+        <TextBlock Text="Immatriculation " VerticalAlignment="Top" Margin="262,157,418,0" />
+
         <!--<Button x:Name ="UploadButtonStock" Content="Upload" HorizontalAlignment="Left" Margin="221,297,0,0" VerticalAlignment="Top" Click="UploadButton_Add_Click"/>-->
         <!--<TextBlock Text="Id " VerticalAlignment="Top" Margin="645,380,139,0" />-->
         <!--<TextBox x:Name="retourImmatriculation" VerticalAlignment="Top" Margin="666,390,34,0" Height="18" />-->

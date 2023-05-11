@@ -9,7 +9,7 @@ public class Materiel_SRV_test
     public void Materiel_SRV_GetById()
     {
         var mock = new Mock<IDepot_DAL<Materiel_DAL>>();
-        mock.Setup(d => d.GetById(It.IsAny<int>())).Returns(new Materiel_DAL(0, "Corde", "FEU", "94321128", true, 5, 10, DateTime.Now, DateTime.Now));
+        mock.Setup(d => d.GetById(It.IsAny<int>())).Returns(new Materiel_DAL(0, "Corde", "FEU", "94321128", true, null, 5, 10, DateTime.Now, DateTime.Now));
 
         var srv = new Materiel_SRV(mock.Object);
 
@@ -37,7 +37,7 @@ public class Materiel_SRV_test
     public void Materiel_SRV_Insert()
     {
         var mock = new Mock<IDepot_DAL<Materiel_DAL>>();
-        mock.Setup(d => d.Insert(It.IsAny<Materiel_DAL>())).Returns(new Materiel_DAL(0, "Corde", "FEU", "94321128", true, 5, 10, DateTime.Now, DateTime.Now));
+        mock.Setup(d => d.Insert(It.IsAny<Materiel_DAL>())).Returns(new Materiel_DAL(0, "Corde", "FEU", "94321128", true, null, 5, 10, DateTime.Now, DateTime.Now));
 
         var srv = new Materiel_SRV(mock.Object);
 

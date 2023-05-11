@@ -42,8 +42,9 @@ namespace BICE.DAL
                                         reader.GetBoolean(4), 
                                         reader.GetSqlInt32(5).IsNull ? null : reader.GetInt32(5), 
                                         reader.GetSqlInt32(6).IsNull ? null : reader.GetInt32(6), 
-                                        reader.GetSqlDateTime(7).IsNull ? null : reader.GetDateTime(7), 
-                                        reader.GetSqlDateTime(8).IsNull ? null : reader.GetDateTime(8) 
+                                        reader.GetSqlInt32(7).IsNull ? null : reader.GetInt32(7), 
+                                        reader.GetSqlDateTime(8).IsNull ? null : reader.GetDateTime(8), 
+                                        reader.GetSqlDateTime(9).IsNull ? null : reader.GetDateTime(9) 
                 ));
             }
 
@@ -52,11 +53,11 @@ namespace BICE.DAL
             return liste;
         }
 
-        public override Materiel_DAL GetById(int id)
+        public override Materiel_DAL? GetById(int id)
         {
             InitialiserLaConnexionEtLaCommande();
 
-            Commande.CommandText = @"SELECT id,denomination,categorie,numero,est_stocke,nb_utilisations,nb_max_utilisations,date_expiration,date_prochain_controle
+            Commande.CommandText = @"SELECT id,denomination,categorie,numero,est_stocke,vehicule_id,nb_utilisations,nb_max_utilisations,date_expiration,date_prochain_controle
                                     FROM [dbo].[materiel]
                                      WHERE id=@id";
 
@@ -64,32 +65,33 @@ namespace BICE.DAL
 
             var reader = Commande.ExecuteReader();
 
-            Materiel_DAL v = null;
+            Materiel_DAL m = null;
 
             if (reader.Read())
             {
-                v = new Materiel_DAL(reader.GetInt32(0), 
+                m = new Materiel_DAL(reader.GetInt32(0), 
                                     reader.GetString(1), 
                                     reader.GetString(2), 
                                     reader.GetString(3),
                                     reader.GetBoolean(4),
                                     reader.GetSqlInt32(5).IsNull ? null : reader.GetInt32(5),
                                     reader.GetSqlInt32(6).IsNull ? null : reader.GetInt32(6),
-                                    reader[7] == DBNull.Value ? null : reader.GetDateTime(7), 
-                                    reader[8] == DBNull.Value ? null : reader.GetDateTime(8)
+                                    reader.GetSqlInt32(7).IsNull ? null : reader.GetInt32(7),
+                                    reader[8] == DBNull.Value ? null : reader.GetDateTime(8),
+                                    reader[9] == DBNull.Value ? null : reader.GetDateTime(9)
                 );
             }
 
             FermerEtDisposerLaConnexionEtLaCommande();
 
-            return v;
+            return m;
         }
 
-        public override Materiel_DAL GetByNumero(string numero)
+        public override Materiel_DAL? GetByNumero(string numero)
         {
             InitialiserLaConnexionEtLaCommande();
 
-            Commande.CommandText = @"SELECT id,denomination,categorie,numero,est_stocke,nb_utilisations,nb_max_utilisations,date_expiration,date_prochain_controle
+            Commande.CommandText = @"SELECT id,denomination,categorie,numero,est_stocke,vehicule_id,nb_utilisations,nb_max_utilisations,date_expiration,date_prochain_controle
                                     FROM [dbo].[materiel]
                                      WHERE numero=@numero";
 
@@ -99,7 +101,7 @@ namespace BICE.DAL
 
             Materiel_DAL m = null;
 
-            if (reader.Read()) //j'ai trouvé une ligne
+            if (reader.Read())
             {
                 m = new Materiel_DAL(reader.GetInt32(0),
                                     reader.GetString(1),
@@ -108,8 +110,9 @@ namespace BICE.DAL
                                     reader.GetBoolean(4),
                                     reader.GetSqlInt32(5).IsNull ? null : reader.GetInt32(5),
                                     reader.GetSqlInt32(6).IsNull ? null : reader.GetInt32(6),
-                                    reader[7] == DBNull.Value ? null : reader.GetDateTime(7),
-                                    reader[8] == DBNull.Value ? null : reader.GetDateTime(8)
+                                    reader.GetSqlInt32(7).IsNull ? null : reader.GetInt32(7),
+                                    reader[8] == DBNull.Value ? null : reader.GetDateTime(8),
+                                    reader[9] == DBNull.Value ? null : reader.GetDateTime(9)
                 );
             }
 
@@ -126,6 +129,7 @@ namespace BICE.DAL
                                            ,[categorie]
                                            ,[numero]
                                            ,[est_stocke]
+                                           ,[vehicule_id]
                                            ,[nb_utilisations]
                                            ,[nb_max_utilisations]
                                            ,[date_expiration]
@@ -135,6 +139,7 @@ namespace BICE.DAL
                                            ,@categorie
                                            ,@numero
                                            ,@estStocke
+                                           ,@vehicule_id
                                            ,@nbUtilisation
                                            ,@nbMaxUtilisation
                                            ,@dateExpiration
@@ -144,6 +149,7 @@ namespace BICE.DAL
             Commande.Parameters.Add(new SqlParameter("@categorie", v.Categorie));
             Commande.Parameters.Add(new SqlParameter("@numero", v.Numero));
             Commande.Parameters.Add(new SqlParameter("@estStocke", v.EstStocke));
+            Commande.Parameters.Add(new SqlParameter("@vehicule_id", v.VehiculeId ?? (object)DBNull.Value));
             Commande.Parameters.Add(new SqlParameter("@nbUtilisation", v.NbUtilisation ?? (object)DBNull.Value));
             Commande.Parameters.Add(new SqlParameter("nbMaxUtilisation", v.NbMaxUtilisation ?? (object)DBNull.Value));
             Commande.Parameters.Add(new SqlParameter("dateExpiration", v.DateExpiration ?? (object)DBNull.Value));
@@ -165,6 +171,7 @@ namespace BICE.DAL
                                            ,[categorie] = @categorie
                                            ,[numero] = @numero
                                            ,[est_stocke] = @estStocke
+                                           ,[vehicule_id] = @vehicule_id
                                            ,[nb_utilisations] = @nbUtilisation
                                            ,[nb_max_utilisations] = @nbMaxUtilisation
                                            ,[date_expiration] = @dateExpiration
@@ -176,6 +183,7 @@ namespace BICE.DAL
             Commande.Parameters.Add(new SqlParameter("@categorie", v.Categorie));
             Commande.Parameters.Add(new SqlParameter("@numero", v.Numero));
             Commande.Parameters.Add(new SqlParameter("@estStocke", v.EstStocke));
+            Commande.Parameters.Add(new SqlParameter("@vehicule_id", v.VehiculeId ?? (object)DBNull.Value));
             Commande.Parameters.Add(new SqlParameter("@nbUtilisation", v.NbUtilisation ?? (object)DBNull.Value));
             Commande.Parameters.Add(new SqlParameter("nbMaxUtilisation", v.NbMaxUtilisation ?? (object)DBNull.Value));
             Commande.Parameters.Add(new SqlParameter("dateExpiration", v.DateExpiration ?? (object)DBNull.Value));

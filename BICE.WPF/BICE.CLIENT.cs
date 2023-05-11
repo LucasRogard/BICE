@@ -1199,6 +1199,9 @@ namespace BICE.CLIENT
         [Newtonsoft.Json.JsonProperty("estStocke", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool EstStocke { get; set; }
 
+        [Newtonsoft.Json.JsonProperty("vehiculeId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public int? VehiculeId { get; set; }
+
         [Newtonsoft.Json.JsonProperty("nbUtilisation", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int? NbUtilisation { get; set; }
 
