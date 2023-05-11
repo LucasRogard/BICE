@@ -36,9 +36,9 @@ namespace BICE.DAL
             while (reader.Read())
             {
                 liste.Add(new Intervention_DAL(reader.GetInt32(0),
-                                    reader.GetSqlDateTime(1),
-                                    reader.GetString(2).IsNull ? null : reader.GetString(2),
-                                    reader.GetString(3).IsNull ? null : reader.GetString(3)
+                                    reader.GetDateTime(1),
+                                    reader.GetSqlString(2).IsNull ? null : reader.GetString(2),
+                                    reader.GetSqlString(3).IsNull ? null : reader.GetString(3)
                 ));
             }
 
@@ -64,9 +64,9 @@ namespace BICE.DAL
             if (reader.Read())
             {
                 i = new Intervention_DAL(reader.GetInt32(0),
-                                    reader.GetSqlDateTime(1),
-                                    reader.GetString(2).IsNull ? null : reader.GetString(2),
-                                    reader.GetString(3).IsNull ? null : reader.GetString(3)
+                                    reader.GetDateTime(1),
+                                    reader.GetSqlString(2).IsNull ? null : reader.GetString(2),
+                                    reader.GetSqlString(3).IsNull ? null : reader.GetString(3)
                 );
             }
 
@@ -85,7 +85,7 @@ namespace BICE.DAL
                                      VALUES
                                            (@date
                                            ,@description
-                                           ,@denomination";
+                                           ,@denomination); select scope_identity()";
 
             Commande.Parameters.Add(new SqlParameter("@date", i.Date));
             Commande.Parameters.Add(new SqlParameter("@description", i.Description));

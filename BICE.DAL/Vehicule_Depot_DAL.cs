@@ -37,7 +37,7 @@ namespace BICE.DAL
             {
                 liste.Add(new Vehicule_DAL(reader.GetInt32(0),
                                     reader.GetString(1),
-                                    reader.GetString(2).IsNull ? null : reader.GetString(2),
+                                    reader.GetSqlString(2).IsNull ? null : reader.GetString(2),
                                     reader.GetString(3)
                 ));
             }
@@ -65,7 +65,7 @@ namespace BICE.DAL
             {
                 v = new Vehicule_DAL(reader.GetInt32(0),
                                     reader.GetString(1),
-                                    reader.GetString(2).IsNull ? null : reader.GetString(2),
+                                    reader.GetSqlString(2).IsNull ? null : reader.GetString(2),
                                     reader.GetString(3));
             }
 
@@ -84,7 +84,7 @@ namespace BICE.DAL
                                      VALUES
                                            (@denomination
                                            ,@immatriculation
-                                           ,@numero";
+                                           ,@numero); select scope_identity()";
 
             Commande.Parameters.Add(new SqlParameter("@denomination", v.Denomination));
             Commande.Parameters.Add(new SqlParameter("@immatriculation", v.Immatriculation));
@@ -98,7 +98,7 @@ namespace BICE.DAL
         }
 
 
-        public override Point_DAL Update(Point_DAL v)
+        public override Vehicule_DAL Update(Vehicule_DAL v)
         {
             InitialiserLaConnexionEtLaCommande();
             Commande.CommandText = @"UPDATE [dbo].[Points]
