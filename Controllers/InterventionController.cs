@@ -16,7 +16,7 @@ namespace BICE.API.Controllers
         }
 
         [HttpPost]
-        [Route("/Intervention/Ajouter")]
+        [Route("/InterventionAjouter")]
         public Intervention_DTO Ajouter(Intervention_DTO intervention)
         {
             return service.Ajouter(intervention);

@@ -11,22 +11,32 @@
     <Compile Remove="BICE.DAL\**" />
     <Compile Remove="BICE.DTO\**" />
     <Compile Remove="BICE.SRV\**" />
+    <Compile Remove="BICE.TEST\**" />
+    <Compile Remove="BICE.WPF\**" />
     <Content Remove="BICE.BLL\**" />
     <Content Remove="BICE.DAL\**" />
     <Content Remove="BICE.DTO\**" />
     <Content Remove="BICE.SRV\**" />
+    <Content Remove="BICE.TEST\**" />
+    <Content Remove="BICE.WPF\**" />
     <EmbeddedResource Remove="BICE.BLL\**" />
     <EmbeddedResource Remove="BICE.DAL\**" />
     <EmbeddedResource Remove="BICE.DTO\**" />
     <EmbeddedResource Remove="BICE.SRV\**" />
+    <EmbeddedResource Remove="BICE.TEST\**" />
+    <EmbeddedResource Remove="BICE.WPF\**" />
     <None Remove="BICE.BLL\**" />
     <None Remove="BICE.DAL\**" />
     <None Remove="BICE.DTO\**" />
     <None Remove="BICE.SRV\**" />
+    <None Remove="BICE.TEST\**" />
+    <None Remove="BICE.WPF\**" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.0" />
+    <PackageReference Include="Microsoft.SharePointOnline.CSOM" Version="16.1.23508.12000" />
+    <PackageReference Include="Moq" Version="4.18.4" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 
