@@ -9,7 +9,7 @@ public class Vehicule_SRV_test
     public void Vehicule_SRV_GetById()
     {
         var mock = new Mock<IDepot_DAL<Vehicule_DAL>>();
-        mock.Setup(d => d.GetById(It.IsAny<int>())).Returns(new Vehicule_DAL(0, "fiat panda", "9CV5F36", "94321128"));
+        mock.Setup(d => d.GetById(It.IsAny<int>())).Returns(new Vehicule_DAL(0, "fiat panda", "9CV5F36", "94321128", true));
 
         var srv = new Vehicule_SRV(mock.Object);
 
@@ -37,7 +37,7 @@ public class Vehicule_SRV_test
     public void Vehicule_SRV_Insert()
     {
         var mock = new Mock<IDepot_DAL<Vehicule_DAL>>();
-        mock.Setup(d => d.Insert(It.IsAny<Vehicule_DAL>())).Returns(new Vehicule_DAL(0, "fiat panda", "9CV5F36", "94321128"));
+        mock.Setup(d => d.Insert(It.IsAny<Vehicule_DAL>())).Returns(new Vehicule_DAL(0, "fiat panda", "9CV5F36", "94321128", true));
 
         var srv = new Vehicule_SRV(mock.Object);
 

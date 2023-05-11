@@ -35,7 +35,8 @@ namespace BICE.SRV
                 vehicule.Id,
                 vehicule.Denomination,
                 vehicule.Immatriculation,
-                vehicule.Numero
+                vehicule.Numero,
+                vehicule.Actif
                 );
             depot_vehicule.Insert(vehicule_DAL);
             return vehicule;
@@ -93,7 +94,8 @@ namespace BICE.SRV
                 vehicule.Id,
                 vehicule.Denomination,
                 vehicule.Immatriculation,
-                vehicule.Numero
+                vehicule.Numero,
+                vehicule.Actif
                 );
             depot_vehicule.Update(vehicule_DAL);
 
@@ -106,7 +108,8 @@ namespace BICE.SRV
                 vehicule.Id,
                 vehicule.Denomination,
                 vehicule.Immatriculation,
-                vehicule.Numero
+                vehicule.Numero, 
+                vehicule.Actif
                 );
             depot_vehicule.Delete(vehicule_DAL);
         }

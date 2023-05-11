@@ -12,13 +12,15 @@ namespace BICE.DAL
         public string Denomination { get; set; }
         public string? Immatriculation { get; set; }
         public string Numero { get; set; }
+        public bool Actif { get; set; }
 
-        public Vehicule_DAL(int id, string denomination, string? immatriculation, string numero)
+        public Vehicule_DAL(int id, string denomination, string? immatriculation, string numero, bool actif)
         {
             Id = id;
             Denomination = denomination;
             Immatriculation = immatriculation;
             Numero = numero;
+            Actif = actif;
         }
     }
 }

@@ -51,8 +51,7 @@ namespace BICE.WPF
                         if (client.MaterielGetByNumero(dto.Numero) == null)
                         {
                             client.MaterielAjouter(dto);
-                        }
-                        else
+                        }else
                         {
                             client.MaterielModifier(dto);
                         }
@@ -80,8 +79,7 @@ namespace BICE.WPF
                         if (client.MaterielGetById(dto.Id) == null)
                         {
                             throw new Exception("Vous avez essayé de supprimer un matériel inexistant");
-                        }
-                        else
+                        }else
                         {
                             client.MaterielDelete(dto);
                         }
@@ -94,40 +92,38 @@ namespace BICE.WPF
 
         private void AjouterVehicule(object sender, RoutedEventArgs e)
         {
-            TextBox immatriculation = FindName("Immatriculation") as TextBox;
-            TextBox denomination = FindName("Denomination") as TextBox;
-            TextBox numero = FindName("Numero") as TextBox;
+            TextBox TextBoxDenomination = FindName("Denomination") as TextBox;
+            TextBox TextBoxImmatriculation = FindName("Immatriculation") as TextBox;
+            TextBox TextBoxNumero = FindName("Numero") as TextBox;
 
             var dto = new BICE.CLIENT.Vehicule_DTO()
             {
-                Immatriculation = immatriculation.Text,
-                Denomination = denomination.Text,
-                Numero = numero.Text,
+                Immatriculation = TextBoxImmatriculation.Text,
+                Denomination = TextBoxDenomination.Text,
+                Numero = TextBoxNumero.Text,
             };
 
             if (client.VehiculeGetByNumero(dto.Numero) == null)
             {
                 client.VehiculeAjouter(dto);
-            }
-            else
+            }else
             {
                 client.VehiculeModifier(dto);
             }
         }
 
-        private void UploadButton_DelVehicule_Click(Object sender, RoutedEventArgs e)
+        private void DeleteVehicule(Object sender, RoutedEventArgs e)
         {
-            TextBox idTextBox = FindName("supprId") as TextBox;
-
-            var id = idTextBox.Text;
+            TextBox TextBoxId = FindName("IdDelete") as TextBox;
+            var id = TextBoxId.Text;
             var dto = client.VehiculeGetById(int.Parse(id));
+            dto.Actif = false;
             if (dto == null)
             {
-                throw new Exception("Vous avez essayé de supprimer un véhicule inexistant");
-            }
-            else
+                throw new Exception("Aucun véhicule ne porte cet id");
+            }else
             {
-                client.VehiculeDelete(dto);
+                client.VehiculeModifier(dto);
             }
         }
     }

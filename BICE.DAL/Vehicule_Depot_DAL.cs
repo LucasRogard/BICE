@@ -38,7 +38,8 @@ namespace BICE.DAL
                 liste.Add(new Vehicule_DAL(reader.GetInt32(0),
                                     reader.GetString(1),
                                     reader.GetSqlString(2).IsNull ? null : reader.GetString(2),
-                                    reader.GetString(3)
+                                    reader.GetString(3),
+                                    reader.GetBoolean(4)
                 ));
             }
 
@@ -51,7 +52,7 @@ namespace BICE.DAL
         {
             InitialiserLaConnexionEtLaCommande();
 
-            Commande.CommandText = @"SELECT id,denomination,immatriculation,numero
+            Commande.CommandText = @"SELECT id,denomination,immatriculation,numero,actif
                                     FROM [dbo].[vehicules]
                                      WHERE id=@id";
 
@@ -61,16 +62,17 @@ namespace BICE.DAL
 
             Vehicule_DAL v = null;
 
-            if (reader.Read()) //j'ai trouvé une ligne
+            if (reader.Read())
             {
                 v = new Vehicule_DAL(reader.GetInt32(0),
                                     reader.GetString(1),
                                     reader.GetSqlString(2).IsNull ? null : reader.GetString(2),
-                                    reader.GetString(3));
+                                    reader.GetString(3),
+                                    reader.GetBoolean(4)
+                                    );
             }
 
             FermerEtDisposerLaConnexionEtLaCommande();
-
             return v;
         }
 
@@ -78,7 +80,7 @@ namespace BICE.DAL
         {
             InitialiserLaConnexionEtLaCommande();
 
-            Commande.CommandText = @"SELECT id,denomination,immatriculation,numero
+            Commande.CommandText = @"SELECT id,denomination,immatriculation,numero,actif
                                     FROM [dbo].[vehicules]
                                      WHERE numero=@numero";
 
@@ -93,7 +95,8 @@ namespace BICE.DAL
                 v = new Vehicule_DAL(reader.GetInt32(0),
                                     reader.GetString(1),
                                     reader.GetSqlString(2).IsNull ? null : reader.GetString(2),
-                                    reader.GetString(3));
+                                    reader.GetString(3), 
+                                    reader.GetBoolean(4));
             }
 
             FermerEtDisposerLaConnexionEtLaCommande();
@@ -107,11 +110,13 @@ namespace BICE.DAL
             Commande.CommandText = @"INSERT INTO [dbo].[vehicules]
                                            ([denomination]
                                            ,[immatriculation]
-                                           ,[numero])
+                                           ,[numero]
+                                           ,[actif])
                                      VALUES
                                            (@denomination
                                            ,@immatriculation
-                                           ,@numero); select scope_identity()";
+                                           ,@numero
+                                           ,1); select scope_identity()";
 
             Commande.Parameters.Add(new SqlParameter("@denomination", v.Denomination));
             Commande.Parameters.Add(new SqlParameter("@immatriculation", v.Immatriculation));
@@ -131,6 +136,7 @@ namespace BICE.DAL
             Commande.CommandText = @"UPDATE [dbo].[vehicules] set [denomination] = @denomination
                                         ,[immatriculation] = @immatriculation
                                         ,[numero] = @numero
+                                        ,[actif] = @actif
                                     WHERE
                                         (id = @id)";
 
@@ -138,6 +144,7 @@ namespace BICE.DAL
             Commande.Parameters.Add(new SqlParameter("@denomination", v.Denomination));
             Commande.Parameters.Add(new SqlParameter("@immatriculation", v.Immatriculation));
             Commande.Parameters.Add(new SqlParameter("@numero", v.Numero));
+            Commande.Parameters.Add(new SqlParameter("@actif", v.Actif));
             Commande.ExecuteNonQuery();
 
             FermerEtDisposerLaConnexionEtLaCommande();

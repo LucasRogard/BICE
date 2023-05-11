@@ -12,5 +12,6 @@ namespace BICE.DTO
         public string Denomination { get; set; }
         public string? Immatriculation { get; set; }
         public string Numero { get; set; }
+        public bool Actif { get; set; }
     }
 }

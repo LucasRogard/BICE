@@ -1228,6 +1228,9 @@ namespace BICE.CLIENT
         [Newtonsoft.Json.JsonProperty("numero", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Numero { get; set; }
 
+        [Newtonsoft.Json.JsonProperty("actif", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public bool Actif { get; set; }
+
     }
 
 
