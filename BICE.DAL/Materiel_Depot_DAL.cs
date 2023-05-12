@@ -35,16 +35,16 @@ namespace BICE.DAL
 
             while (reader.Read())
             {
-                liste.Add(new Materiel_DAL(reader.GetInt32(0), 
-                                        reader.GetString(1), 
-                                        reader.GetString(2), 
-                                        reader.GetString(3), 
-                                        reader.GetBoolean(4), 
-                                        reader.GetSqlInt32(5).IsNull ? null : reader.GetInt32(5), 
-                                        reader.GetSqlInt32(6).IsNull ? null : reader.GetInt32(6), 
-                                        reader.GetSqlInt32(7).IsNull ? null : reader.GetInt32(7), 
-                                        reader.GetSqlDateTime(8).IsNull ? null : reader.GetDateTime(8), 
-                                        reader.GetSqlDateTime(9).IsNull ? null : reader.GetDateTime(9) 
+                liste.Add(new Materiel_DAL(reader.GetInt32(0),
+                                        reader.GetString(1),
+                                        reader.GetString(2),
+                                        reader.GetString(3),
+                                        reader.GetBoolean(4),
+                                        reader.GetSqlInt32(5).IsNull ? null : reader.GetInt32(5),
+                                        reader.GetSqlInt32(6).IsNull ? null : reader.GetInt32(6),
+                                        reader.GetSqlInt32(7).IsNull ? null : reader.GetInt32(7),
+                                        reader[8] == DBNull.Value ? null : reader.GetDateTime(8),
+                                        reader[9] == DBNull.Value ? null : reader.GetDateTime(9)
                 ));
             }
 

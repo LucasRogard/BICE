@@ -23,6 +23,13 @@ namespace BICE.API.Controllers
         }
 
         [HttpGet]
+        [Route("/MaterielGetAll")]
+        public List<Materiel_DTO> GetAll()
+        {
+            return service.GetAll().ToList();
+        }
+
+        [HttpGet]
         [Route("/MaterielGetByNumero")]
         public Materiel_DTO GetByNumeroMateriel(string numero)
         {

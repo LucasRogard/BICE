@@ -22,9 +22,7 @@
         <TextBlock Text="Dénomination " VerticalAlignment="Top" Margin="269,132,417,0" />
         <Button x:Name ="OkAjouterVehicule" Content="Ok" HorizontalAlignment="Left" Margin="464,178,0,0" VerticalAlignment="Top" Click="AjouterVehicule"/>
         <Button x:Name ="OkSupprimerVehicule" Content="Ok" HorizontalAlignment="Left" Margin="464,238,0,0" VerticalAlignment="Top" Click="DeleteVehicule"/>
-        <!--<TextBlock Text="Retour d'intervention" FontSize ="15" VerticalAlignment="Top" Margin="623,355,38,0" />-->
         <TextBlock Text="Immatriculation " VerticalAlignment="Top" Margin="262,157,418,0" />
-        <!--Test-->
 
         <TextBlock Text="Id du véhicule " VerticalAlignment="Top" Margin="532,134,136,0" />
         <TextBlock Text="Dénomination " VerticalAlignment="Top" Margin="530,159,143,0" />
@@ -33,11 +31,14 @@
         <Button x:Name ="CSV" Content="CSV" HorizontalAlignment="Left" Margin="627,217,0,0" VerticalAlignment="Top" Click="RetourIntervention"/>
         <TextBox x:Name="Description" VerticalAlignment="Top" Margin="614,182,86,0" Height="18" />
         <TextBox x:Name="Denomination2" VerticalAlignment="Top" Margin="614,159,86,0" Height="18" />
-        <TextBlock Text="Ajouter/Modifier " VerticalAlignment="Top" Margin="619,107,66,0" />
-        <!--<Button x:Name ="UploadButtonStock" Content="Upload" HorizontalAlignment="Left" Margin="221,297,0,0" VerticalAlignment="Top" Click="UploadButton_Add_Click"/>-->
-        <!--<TextBlock Text="Id " VerticalAlignment="Top" Margin="645,380,139,0" />-->
-        <!--<TextBox x:Name="retourImmatriculation" VerticalAlignment="Top" Margin="666,390,34,0" Height="18" />-->
-        <!--<Button x:Name ="UploadButtonRetourNU" Content="Matériel non utilisé" HorizontalAlignment="Left" Margin="632,297,0,0" VerticalAlignment="Top" Click="UploadButton_Add_Click"/>-->
-        <!--<Button x:Name ="UploadButtonRetourU" Content="Matériel utilisé" HorizontalAl   ignment="Left" Margin="632,322,0,0" VerticalAlignment="Top" Click="UploadButton_Add_Click"/>-->
+        <TextBlock Text="Retour Intervention" VerticalAlignment="Top" Margin="612,107,73,0" />
+        
+        <TextBlock Text="Export Matériel" VerticalAlignment="Top" Margin="95,274,611,0" />
+        <Button x:Name ="Exporter" Content="Exporter" HorizontalAlignment="Left" Margin="112,294,0,0" VerticalAlignment="Top" Click="ExportMateriel"/>
+        <TextBlock Text="Export Matériel Inutilisable" VerticalAlignment="Top" Margin="69,320,566,0" />
+        <Button x:Name ="Exporter2" Content="Exporter" HorizontalAlignment="Left" Margin="112,341,0,0" VerticalAlignment="Top" Click="ExportMaterielInutilisable"/>
+        <TextBlock Text="Export Matériel Inutilisable" VerticalAlignment="Top" Margin="69,320,566,0" />
+        <Button x:Name ="Exporter3" Content="Exporter" HorizontalAlignment="Left" Margin="112,375,0,0" VerticalAlignment="Top" Click="ExportMaterielControle"/>
+
     </Grid>
 </Window>

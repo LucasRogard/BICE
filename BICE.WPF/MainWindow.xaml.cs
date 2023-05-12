@@ -9,6 +9,7 @@ using System.Windows.Documents;
 using BICE.CLIENT;
 using System.Windows.Controls;
 using BICE.CLIENT;
+using Microsoft.SharePoint.News.DataModel;
 
 namespace BICE.WPF
 {
@@ -193,5 +194,102 @@ namespace BICE.WPF
             };
             client.InterventionAjouter(intervention_dto);
         }
+
+        private void ExportMateriel(object sender, RoutedEventArgs e)
+        {
+            var streamWriter = new StreamWriter("C:\\Users\\yughi\\Documents\\ExportMateriel\\Export_Materiel.csv");
+
+            var listMateriel = (List<BICE.CLIENT.Materiel_DTO>)client.MaterielGetAll();
+
+            string NouvelleLigne = Environment.NewLine;
+
+            foreach (var materiel in listMateriel)
+            {
+                if (materiel.EstStocke) 
+                {
+                    var row = string.Join(";", new List<string>()
+                    {
+                        materiel.Id.ToString(),
+                        materiel.Denomination.ToString(),
+                        materiel.Categorie.ToString(),
+                        materiel.Numero.ToString(),
+                        materiel.EstStocke.ToString(),
+                        materiel.VehiculeId?.ToString()?? "",
+                        materiel.NbUtilisation?.ToString()?? "",
+                        materiel.NbMaxUtilisation?.ToString()?? "",
+                        materiel.DateExpiration?.ToString()?? "",
+                        materiel.DateControle?.ToString()?? ""
+                    });
+                    streamWriter.Write(row + NouvelleLigne);
+                }
+            };
+            streamWriter.Close();
+        }
+
+        private void ExportMaterielInutilisable(object sender, RoutedEventArgs e)
+        {
+            var streamWriter = new StreamWriter("C:\\Users\\yughi\\Documents\\ExportMateriel\\Export_Materiel_Inutilisable.csv");
+
+            var listMateriel = (List<BICE.CLIENT.Materiel_DTO>)client.MaterielGetAll();
+
+            string NouvelleLigne = Environment.NewLine;
+
+            foreach (var materiel in listMateriel)
+            {
+                if (materiel.EstStocke && materiel.NbUtilisation >= materiel.NbMaxUtilisation)
+                {
+                    var row = string.Join(";", new List<string>()
+                    {
+                        materiel.Id.ToString(),
+                        materiel.Denomination.ToString(),
+                        materiel.Categorie.ToString(),
+                        materiel.Numero.ToString(),
+                        materiel.EstStocke.ToString(),
+                        materiel.VehiculeId?.ToString()?? "",
+                        materiel.NbUtilisation?.ToString()?? "",
+                        materiel.NbMaxUtilisation?.ToString()?? "",
+                        materiel.DateExpiration?.ToString()?? "",
+                        materiel.DateControle?.ToString()?? ""
+                    });
+                    streamWriter.Write(row + NouvelleLigne);
+                }
+            };
+            streamWriter.Close();
+        }
+
+        private void ExportMaterielControle(object sender, RoutedEventArgs e)
+        {
+            var streamWriter = new StreamWriter("C:\\Users\\yughi\\Documents\\ExportMateriel\\Export_Materiel_Controle.csv");
+
+            var listMateriel = (List<BICE.CLIENT.Materiel_DTO>)client.MaterielGetAll();
+
+            string NouvelleLigne = Environment.NewLine;
+
+            foreach (var materiel in listMateriel)
+            {
+                var date = DateTime.Now;
+                var dateNow = date.ToString("dd/mm/yyyy");
+                var dateControle = materiel.DateControle.ToString();
+                if (dateControle == dateNow)
+                {
+                    var row = string.Join(";", new List<string>()
+                    {
+                        materiel.Id.ToString(),
+                        materiel.Denomination.ToString(),
+                        materiel.Categorie.ToString(),
+                        materiel.Numero.ToString(),
+                        materiel.EstStocke.ToString(),
+                        materiel.VehiculeId?.ToString()?? "",
+                        materiel.NbUtilisation?.ToString()?? "",
+                        materiel.NbMaxUtilisation?.ToString()?? "",
+                        materiel.DateExpiration?.ToString()?? "",
+                        materiel.DateControle?.ToString()?? ""
+                    });
+                    streamWriter.Write(row + NouvelleLigne);
+                }
+            };
+            streamWriter.Close();
+        }
+
     }
 }

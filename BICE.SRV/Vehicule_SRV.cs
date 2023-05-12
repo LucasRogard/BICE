@@ -43,7 +43,6 @@ namespace BICE.SRV
         }
         public IEnumerable<Vehicule_DTO> GetAll()
         {
-            //retourne une liste de materiel DTO
             return depot_vehicule.GetAll().Select(vehicule_DAL => new Vehicule_DTO()
             {
                 Id = vehicule_DAL.Id,
